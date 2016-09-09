@@ -37,9 +37,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        topTextView.defaultTextAttributes = memeTextAttributes
+        //topTextView.defaultTextAttributes = memeTextAttributes
         topTextView.delegate = self
-        bottomTextView.defaultTextAttributes = memeTextAttributes
+        //bottomTextView.defaultTextAttributes = memeTextAttributes
         bottomTextView.delegate = self
     }
 
