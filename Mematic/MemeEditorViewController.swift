@@ -128,7 +128,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 
     // Clears text field
     func textFieldDidBeginEditing(textField: UITextField) {
-        textField.text = ""
+        if textField.text == "TOP" || textField.text == "BOTTOM" {
+            textField.text = ""
+        }
     }
 
     // Generates meme image
@@ -136,7 +138,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 
         // Hides toolbar and navigation bar
         toolbar.hidden = true
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: true)
 
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -170,7 +172,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 
     // Action to share image
     @IBAction func shareMeme(sender: AnyObject) {
-        let memedImage = "my text"
+        let memedImage = generateMemedImage()
         let activityViewController : UIActivityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
 
         activityViewController.completionWithItemsHandler = {(activity, completed, items, error) in
@@ -179,9 +181,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             }
         }
 
-        self.navigationController!.presentViewController(activityViewController, animated: true, completion: {
-            self.saveImageToPhotoLibrary()
-        })
+        self.navigationController!.presentViewController(activityViewController, animated: true, completion: nil)
     }
 
     func saveImageToPhotoLibrary() {
